@@ -1,0 +1,11 @@
+python tune.py \
+	--proto /home/terry/calibration/headpose/light-rpoly_lmp_deploy_w_scale.prototxt \
+	--model /home/terry/calibration/headpose/light_rpoly_lmp_iter_75000_w_scale.caffemodel \
+	--calibration_proto /home/terry/calibration/headpose/bmnet_class6_calibration_table.1x10.pb2 \
+	--calibration_model /home/terry/calibration/headpose/bmnet_class6_int8.1x10.caffemodel \
+	--output_path ./result_tune \
+        --data_list /home/terry/calibration/headpose/list.txt \
+	--data_limit 10 \
+	--image_params "image_params.json" \
+	--tune_layer "prelu/ip2" \
+	--tune_diff 5.4869

@@ -1,0 +1,5 @@
+# Model
+cuda2:/data/release/bmnet_models/vgg16/vgg16.caffemodel
+
+# Build bmodel
+~/bmtap2/install/bin/bm_builder.bin -t bm1880 -n vgg16 -c bmnet_vgg16_int8.caffemodel --in_ctable=bmnet_vgg16_calibration_table.pb2 --out_ctable=bmnet_vgg16_calibration_opt_table.pb2 --enable-weight-optimize=yes --enable-layer-group=yes --fc-left-shift=6 -s 1,3,224,224 -p vgg16_frontend_opt.proto -o vgg16.bmodel --enable-cpu-softmax=yes -u ~/bmtap2/install/lib/

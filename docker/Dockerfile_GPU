@@ -1,0 +1,100 @@
+FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+#FROM ubuntu:16.04
+LABEL maintainer caffe-maint@googlegroups.com
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        cmake \
+        git \
+        wget \
+        libatlas-base-dev \
+        libboost-all-dev \
+        libgflags-dev \
+        libgoogle-glog-dev \
+        libhdf5-serial-dev \
+        libleveldb-dev \
+        liblmdb-dev \
+        libopencv-dev \
+        libprotobuf-dev \
+        libsnappy-dev \
+        protobuf-compiler \
+        python-dev \
+        python-numpy \
+        python-pip \
+        python-setuptools \
+        python-scipy \
+        python-tk
+
+
+RUN apt-get install -y cmake \
+    g++ \
+    unzip \
+    vim \
+    libgtk2.0-dev \
+    pkg-config \
+    libcanberra-gtk-module \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev
+
+RUN pip install --upgrade pip
+RUN pip install Cython==0.29.7 \
+    numpy==1.16.3 \
+    scipy==0.17.0 \
+    scikit-image==0.14.2 \
+    matplotlib==2.2.4 \
+    ipython==5.8.0 \
+    h5py==2.9.0 \
+    leveldb==0.194 \
+    networkx==2.2 \
+    nose==1.3.7 \
+    python-dateutil==2.5.0 \
+    pandas==0.24.0 \
+    protobuf==3.7.1 \
+    python-gflags==3.1.2 \
+    pyyaml==5.1 \
+    Pillow==6.0.0 \
+    six==1.12.0 \
+    lmdb==0.94
+
+# ============= OpenCV =============
+# OpenCV
+# [Warning] - opencv-python does not include Video I/O (Can not open Webcam)
+# Build opencv from source
+
+ARG opencv_version=3.4.1
+
+ENV OPENCV_DIR /opt/opencv
+
+RUN mkdir -p $OPENCV_DIR 
+
+WORKDIR $OPENCV_DIR
+
+RUN wget https://github.com/Itseez/opencv/archive/${opencv_version}.zip -O opencv-${opencv_version}.zip
+
+RUN unzip opencv-${opencv_version}.zip && \
+    cd opencv-${opencv_version} &&\
+    mkdir build && cd build && \
+    cmake -D CMAKE_BUILD_TYPE=Release \
+    -D CMAKE_INSTALL_PREFIX=$(python -c "import sys; print(sys.prefix)") \
+    -D WITH_TBB=ON \
+    -D WITH_V4L=ON \
+    -D WITH_CUDA=OFF \
+    -D WITH_EIGEN=OFF \
+    -D WITH_OPENCL=OFF \
+    -D BUILD_opencv_python3=YES \
+  ..
+
+RUN cd opencv-${opencv_version}/build && \
+    make -j4 && \
+    make install && \
+    rm $OPENCV_DIR/opencv-${opencv_version}.zip
+
+ENV CALIBRATION_ROOT=/opt/release
+
+ADD ./ $CALIBRATION_ROOT
+
+ENV PYTHONPATH $CALIBRATION_ROOT:$PYTHONPATH
+ENV LD_LIBRARY_PATH $CALIBRATION_ROOT/caffe:$LD_LIBRARY_PATH
+#ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
+RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig

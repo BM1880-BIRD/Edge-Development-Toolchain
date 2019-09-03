@@ -1,0 +1,5 @@
+# Model
+cuda2:/data/release/bmnet_models/lenet/lenet.caffemodel
+
+# Build bmodel
+~/bmtap2/install/bin/bm_builder.bin -t bm1880 -n lenet -c ./bmnet_lenet_int8.caffemodel --in_ctable=./bmnet_lenet_calibration_table.pb2 --out_ctable=./bmnet_lenet_calibration_opt_table.pb2  --enable-weight-optimize=yes --enable-layer-group=yes --fc-left-shift=6 -s 1,1,28,28 -p lenet_frontend_opt.proto -o ./lenet.bmodel --enable-cpu-softmax=yes -u ~/bmtap2/install/lib/

@@ -1,0 +1,71 @@
+layer {
+  name: 'data'
+  type: 'Python'
+  top: 'data'
+  python_param {
+    module: 'espcn_data_layer'
+    layer: 'DataLayer'
+    param_str: "{'image_list': ./input.txt, 'hw': 512}"
+  }
+}
+layer {
+  name: "Conv2D"
+  type: "Convolution"
+  bottom: "data"
+  top: "Conv2D"
+  convolution_param {
+    num_output: 64
+    bias_term: true
+    group: 1
+    stride: 1
+    pad_h: 0
+    pad_w: 0
+    kernel_h: 5
+    kernel_w: 5
+  }
+}
+layer {
+  name: "Tanh"
+  type: "TanH"
+  bottom: "Conv2D"
+  top: "Tanh"
+}
+layer {
+  name: "Conv2D_1"
+  type: "Convolution"
+  bottom: "Tanh"
+  top: "Conv2D_1"
+  convolution_param {
+    num_output: 32
+    bias_term: true
+    group: 1
+    stride: 1
+    pad_h: 0
+    pad_w: 0
+    kernel_h: 3
+    kernel_w: 3
+  }
+}
+layer {
+  name: "Tanh_1"
+  type: "TanH"
+  bottom: "Conv2D_1"
+  top: "Tanh_1"
+}
+layer {
+  name: "Conv2D_2"
+  type: "Convolution"
+  bottom: "Tanh_1"
+  top: "Conv2D_2"
+  convolution_param {
+    num_output: 4
+    bias_term: true
+    group: 1
+    stride: 1
+    pad_h: 0
+    pad_w: 0
+    kernel_h: 3
+    kernel_w: 3
+  }
+}
+

@@ -1,0 +1,5 @@
+# Model
+cuda2:/data/release/bmnet_models/alexnet/alexnet.caffemodel
+
+# Build bmodel
+~/bmtap2/install/bin/bm_builder.bin -t bm1880 -n alexnet -c ./bmnet_alexnet_int8.caffemodel --in_ctable=./bmnet_alexnet_calibration_table.pb2 --out_ctable=./bmnet_alexnet_calibration_opt_table.pb2  --enable-weight-optimize=yes --enable-layer-group=yes --fc-left-shift=6 -s 1,3,227,227 -p ./alexnet_frontend_opt.proto -o ./alexnet.bmodel --enable-cpu-softmax=yes -u ~/bmtap2/install/lib/

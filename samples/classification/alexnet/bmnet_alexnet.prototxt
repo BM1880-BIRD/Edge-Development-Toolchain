@@ -1,0 +1,25 @@
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 1
+      dim: 3
+      dim: 227
+      dim: 227
+    }
+  }
+}
+
+layer {
+  name: "bmnet"
+  type: "Python"
+  bottom: "data"
+  top: "prob"
+  python_param {
+    module: 'bmnet_layer'
+    layer: 'BMNetLayer'
+    param_str: "{'bmodel_path': ./alexnet/alexnet.bmodel}"
+  }
+}

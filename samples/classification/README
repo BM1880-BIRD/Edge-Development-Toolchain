@@ -1,0 +1,22 @@
+# Calibration and test data set link
+
+# Imagenet for alexnet/googlenet/resnet
+cuda2:/data/dataset/imagenet/ilsvrc12_val_lmdb.tgz
+
+# Mnist for lenet
+cuda2:/data/dataset/mnist/mnist_test_lmdb/
+
+# Calibration
+```
+python calibration.py resnet50
+```
+
+# Demo
+
+##
+
+Check the input size and int8 flag
+
+```
+python inference_demo.py resnet50
+```
