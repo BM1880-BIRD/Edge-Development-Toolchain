@@ -8,7 +8,7 @@
 
 # Introduction
 
-this is mainly for calibration fp32 caffemodel in
+our tools for caffe model calibration   
 
 
 ## Organization
