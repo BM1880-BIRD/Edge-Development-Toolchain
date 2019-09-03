@@ -1,6 +1,6 @@
 # BM1880-Calibration
 Tools for int8 calibration &amp; finetune
-.
+```bash
 ├── caffe      --------------------> modified caffe library                           
 │   ├── _caffe.so
 │   ├── ...
@@ -22,3 +22,4 @@ Tools for int8 calibration &amp; finetune
 └── tuning_tool  ------------------> tool for auto tuning our int8 caffemodel
     ├── auto_tuning_tool
     └── Auto Tuning Tool Guide.pdf
+```
