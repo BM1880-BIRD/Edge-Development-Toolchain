@@ -1,25 +1,101 @@
-# BM1880-Calibration
-Tools for int8 calibration &amp; finetune
-```bash
-├── caffe      --------------------> modified caffe library                           
+<table>
+<tr>
+<td colspan="4" align="center"><h1>BM1880 Calibration Introduction</h1>
+</td>
+</tr>
+</table>
+
+
+# Introduction
+
+our tools for caffe model calibration   
+
+
+## Organization
+
+we supply modified caffe/caffe_gpu library for special layers and int8 support.  
+the calibration_tools/tuning_tool are for calibration and auto finetune caffemodel. you can also see detail guide in each folder.  
+we also supply docker for convenience  
+
+```
+.
+├── caffe
 │   ├── _caffe.so
-│   ├── ...
-├── caffe_gpu  --------------------> modified caffe library for GPU
+│   ├── classifier.py
+│   ├── classifier.pyc
+│   ├── coord_map.py
+│   ├── detector.py
+│   ├── detector.pyc
+│   ├── draw.py
+│   ├── imagenet
+│   ├── __init__.py
+│   ├── __init__.pyc
+│   ├── io.py
+│   ├── io.pyc
+│   ├── libcaffe.so.1.0.0
+│   ├── net_spec.py
+│   ├── net_spec.pyc
+│   ├── proto
+│   ├── pycaffe.py
+│   └── pycaffe.pyc
+├── caffe_gpu
 │   ├── _caffe.so
 │   └── libcaffe.so.1.0.0
-├── calibration_tool  -------------> calibration tool & library
+├── calibration_tool
 │   ├── calibration.py
 │   ├── Calibration Tool Guide.pdf
 │   ├── custom
+│   │   └── deploy.prototxt
 │   └── lib
-├── docker    ---------------------> docker support for GPU&CPU
+│       ├── caffe_net_wrapper.so
+│       ├── calibration_math.so
+│       ├── Calibration.so
+│       └── CNet.so
+├── docker
 │   ├── Dockerfile_CPU
 │   └── Dockerfile_GPU
-├── samples   ---------------------> some samples of our supported AI networks
+├── samples
 │   ├── classification
+│   │   ├── 7.jpg
+│   │   ├── alexnet
+│   │   ├── calibraiton.py
+│   │   ├── googlenet
+│   │   ├── husky.jpg
+│   │   ├── imagenet_mean.binaryproto
+│   │   ├── imagenet_synset_to_human_label_map.txt
+│   │   ├── inference_demo.py
+│   │   ├── lenet
+│   │   ├── mnist_synset_to_human_label_map.txt
+│   │   ├── README
+│   │   ├── resnet50
+│   │   ├── squeezenet
+│   │   └── vgg16
 │   ├── detection
+│   │   ├── calibration.py
+│   │   ├── dog.jpg
+│   │   ├── inference_demo.py
+│   │   ├── input.txt
+│   │   ├── labelmap_coco.prototxt
+│   │   ├── labelmap_voc.prototxt
+│   │   ├── README.md
+│   │   ├── ssd300
+│   │   ├── ssd512
+│   │   ├── utils.py
+│   │   └── yolov3
 │   └── super_resolution
-└── tuning_tool  ------------------> tool for auto tuning our int8 caffemodel
+│       └── espcn
+└── tuning_tool
     ├── auto_tuning_tool
+    │   ├── evaluation_utils.py
+    │   ├── main.py
+    │   ├── main.sh
+    │   ├── test.py
+    │   ├── test.sh
+    │   ├── test_utils.py
+    │   ├── tune.py
+    │   ├── tune.sh
+    │   └── tune_utils.py
     └── Auto Tuning Tool Guide.pdf
 ```
+
+
