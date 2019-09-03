@@ -28,7 +28,6 @@ we also supply docker for convenience
 │   ├── detector.pyc
 │   ├── draw.py
 │   ├── imagenet
-│   │   └── ilsvrc_2012_mean.npy
 │   ├── __init__.py
 │   ├── __init__.pyc
 │   ├── io.py
@@ -37,15 +36,6 @@ we also supply docker for convenience
 │   ├── net_spec.py
 │   ├── net_spec.pyc
 │   ├── proto
-│   │   ├── bmnet
-│   │   │   ├── common_calibration_pb2.py
-│   │   │   ├── common_calibration_pb2.pyc
-│   │   │   ├── __init__.py
-│   │   │   └── __init__.pyc
-│   │   ├── caffe_pb2.py
-│   │   ├── caffe_pb2.pyc
-│   │   ├── __init__.py
-│   │   └── __init__.pyc
 │   ├── pycaffe.py
 │   └── pycaffe.pyc
 ├── caffe_gpu
@@ -68,38 +58,18 @@ we also supply docker for convenience
 │   ├── classification
 │   │   ├── 7.jpg
 │   │   ├── alexnet
-│   │   │   ├── alexnet.prototxt
-│   │   │   ├── bmnet_alexnet.prototxt
-│   │   │   ├── deploy.prototxt
-│   │   │   └── README
 │   │   ├── calibraiton.py
 │   │   ├── googlenet
-│   │   │   ├── deploy.prototxt
-│   │   │   ├── googlenet.prototxt
-│   │   │   └── README
 │   │   ├── husky.jpg
 │   │   ├── imagenet_mean.binaryproto
 │   │   ├── imagenet_synset_to_human_label_map.txt
 │   │   ├── inference_demo.py
 │   │   ├── lenet
-│   │   │   ├── deploy.prototxt
-│   │   │   ├── lenet.prototxt
-│   │   │   └── README
 │   │   ├── mnist_synset_to_human_label_map.txt
 │   │   ├── README
 │   │   ├── resnet50
-│   │   │   ├── bmnet_resnet50.prototxt
-│   │   │   ├── deploy.prototxt
-│   │   │   ├── README
-│   │   │   └── resnet50.prototxt
 │   │   ├── squeezenet
-│   │   │   ├── deploy.prototxt
-│   │   │   ├── README
-│   │   │   └── squeezenet.prototxt
 │   │   └── vgg16
-│   │       ├── deploy.prototxt
-│   │       ├── README
-│   │       └── vgg16.prototxt
 │   ├── detection
 │   │   ├── calibration.py
 │   │   ├── dog.jpg
@@ -109,35 +79,11 @@ we also supply docker for convenience
 │   │   ├── labelmap_voc.prototxt
 │   │   ├── README.md
 │   │   ├── ssd300
-│   │   │   ├── deploy.prototxt
-│   │   │   ├── general_data_layer.py
-│   │   │   ├── __init__.py
-│   │   │   ├── ssd300.prototxt
-│   │   │   ├── ssd.py
-│   │   │   └── ssd.pyc
 │   │   ├── ssd512
-│   │   │   ├── deploy_modify.prototxt
-│   │   │   ├── deploy.prototxt
-│   │   │   ├── README
-│   │   │   └── ssd512.prototxt
 │   │   ├── utils.py
 │   │   └── yolov3
-│   │       ├── deploy.prototxt
-│   │       ├── __init__.py
-│   │       ├── README
-│   │       ├── yolo_data_layer.py
-│   │       ├── yolo.py
-│   │       └── yolov3.prototxt
 │   └── super_resolution
 │       └── espcn
-│           ├── calibraiton.py
-│           ├── deploy_2x.prototxt
-│           ├── espcn_2x.prototxt
-│           ├── espcn_data_layer.py
-│           ├── input.txt
-│           ├── lenna.bmp
-│           ├── README
-│           └── test_espcn.py
 └── tuning_tool
     ├── auto_tuning_tool
     │   ├── evaluation_utils.py
