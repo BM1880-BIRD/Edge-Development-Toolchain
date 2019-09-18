@@ -1,0 +1,8 @@
+{
+    "size": [256, 256],
+    "r_mean": 0,
+    "g_mean": 0,
+    "b_mean": 0,
+    "scale": 1,
+    "padding": true
+}
