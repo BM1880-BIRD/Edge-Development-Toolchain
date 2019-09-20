@@ -6,7 +6,7 @@ Edge calculation TPU only focus on AI model inference. Caffe FP32 model should b
 
 <p align="center">
   <a href="https://github.com/BM1880-BIRD/bm1880-calibration">
-    <img src="working_flow.jpg" width="750px">
+    <img src="assets/working_flow.jpg" width="750px">
   </a>
 </p>
 
