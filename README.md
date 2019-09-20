@@ -1,24 +1,20 @@
-<table>
-<tr>
-<td colspan="4" align="center"><h1>BM1880 Calibration Introduction</h1>
-</td>
-</tr>
-</table>
-
+# Edge Development Toolchain
 
 # Introduction
 
-our tools for caffe model calibration   
+Edge calculation TPU only focus on AI model inference. Caffe FP32 model should be converted to INT8 model before deploy on TPU accelerator . Typical working flow and related tools are shown as below. 
 
+<p align="center">
+  <a href="https://github.com/BM1880-BIRD/bm1880-calibration">
+    <img src="working_flow.jpg" width="750px">
+  </a>
+</p>
 
-## Organization
+We provide all tools and user guide here. 
 
-we supply modified caffe/caffe_gpu library for special layers and int8 support.  
-the calibration_tools/tuning_tool are for calibration and auto finetune caffemodel. you can also see detail guide in each folder.  
-we also supply docker for convenience  
+## Snapshot of all contents
 
 ```
-.
 ├── caffe
 │   ├── _caffe.so
 │   ├── classifier.py
@@ -98,4 +94,32 @@ we also supply docker for convenience
     └── Auto Tuning Tool Guide.pdf
 ```
 
+## Guide 
+
+
+### caffe
+
+This folder include our customized python caffe which support INT8 mode data and model. Calibration Tool and  tuning tool  will use it.  What's more you can also use it for offline model test. You can refer to sample part for reference. 
+
+This part caffe library is provided for CPU. 
+
+### caffe_gpu
+
+This part include GPU caffe library. If you use GPU caffe , you need to replace _caffe.so and libcaffe.so.1.0.0 in caffe folder. 
+
+### calibration_tool
+
+You can use Calibration tool to do FP32 caffe model quantization to convert it to INT8 model. There is  user guide  "Calibration Tool Guide.pdf" to explain detail. 
+
+### docker
+
+We provide both CPU and GPU docker files for you to set up docker enviroment to use these tools. 
+
+### tuning_tool
+
+You can fine tune your int8 model if the accuracy is not satisfied. There is  user guide  "Auto Tuning Tool Guide.pdf" to explain detail. 
+
+### samples
+
+We provide a lot of frequently used network calibration and offline test samples here. 
 
