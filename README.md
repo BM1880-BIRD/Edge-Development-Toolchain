@@ -64,9 +64,9 @@ to caffe folder.
 
 Then run docker build and run as below.
 
-nvidia-docker build -t bmcalibration:2.0_gpu -f docker/Dockerfile_GPU .
+sudo nvidia-docker build -t bmcalibration:2.0_gpu -f docker/Dockerfile_GPU .
 
-nvidia-docker run -v /workspace:/workspace -it bmcalibration:2.0_gpu
+sudo nvidia-docker run -v /workspace:/workspace -it bmcalibration:2.0_gpu
 
 After that you have already completed GPU docker env. You must call below  apis  to enable GPU  Caffe.
 
@@ -79,9 +79,9 @@ caffe.set_device(device_id)    # device_id is  the GPU id on your machine.
 
 Run docker build and run as below.
 
-docker build -t bmcalibration:2.0_cpu -f docker/Dockerfile_CPU .
+sudo docker build -t bmcalibration:2.0_cpu -f docker/Dockerfile_CPU .
 
-docker run -v /workspace:/workspace -it bmcalibration:2.0_cpu
+sudo docker run -v /workspace:/workspace -it bmcalibration:2.0_cpu
 
 After that you have already completed GPU docker env.
 
