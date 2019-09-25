@@ -90,7 +90,7 @@ RUN cd opencv-${opencv_version}/build && \
     make install && \
     rm $OPENCV_DIR/opencv-${opencv_version}.zip
 
-ENV CALIBRATION_ROOT=/opt/release
+ENV CALIBRATION_ROOT=/opt/Edge-Development-Toolchaine
 
 ADD ./ $CALIBRATION_ROOT
 
@@ -98,3 +98,4 @@ ENV PYTHONPATH $CALIBRATION_ROOT:$PYTHONPATH
 ENV LD_LIBRARY_PATH $CALIBRATION_ROOT/caffe:$LD_LIBRARY_PATH
 #ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
+WORKDIR $CALIBRATION_ROOT
