@@ -12,90 +12,7 @@ Edge calculation TPU only focus on AI model inference. Caffe FP32 model should b
 
 We provide all tools and user guide here. 
 
-## Snapshot of all contents
-
-```
-├── caffe
-│   ├── _caffe.so
-│   ├── classifier.py
-│   ├── classifier.pyc
-│   ├── coord_map.py
-│   ├── detector.py
-│   ├── detector.pyc
-│   ├── draw.py
-│   ├── imagenet
-│   ├── __init__.py
-│   ├── __init__.pyc
-│   ├── io.py
-│   ├── io.pyc
-│   ├── libcaffe.so.1.0.0
-│   ├── net_spec.py
-│   ├── net_spec.pyc
-│   ├── proto
-│   ├── pycaffe.py
-│   └── pycaffe.pyc
-├── caffe_gpu
-│   ├── _caffe.so
-│   └── libcaffe.so.1.0.0
-├── calibration_tool
-│   ├── calibration.py
-│   ├── Calibration Tool Guide.pdf
-│   ├── custom
-│   │   └── deploy.prototxt
-│   └── lib
-│       ├── caffe_net_wrapper.so
-│       ├── calibration_math.so
-│       ├── Calibration.so
-│       └── CNet.so
-├── docker
-│   ├── Dockerfile_CPU
-│   └── Dockerfile_GPU
-├── samples
-│   ├── classification
-│   │   ├── 7.jpg
-│   │   ├── alexnet
-│   │   ├── calibraiton.py
-│   │   ├── googlenet
-│   │   ├── husky.jpg
-│   │   ├── imagenet_mean.binaryproto
-│   │   ├── imagenet_synset_to_human_label_map.txt
-│   │   ├── inference_demo.py
-│   │   ├── lenet
-│   │   ├── mnist_synset_to_human_label_map.txt
-│   │   ├── README
-│   │   ├── resnet50
-│   │   ├── squeezenet
-│   │   └── vgg16
-│   ├── detection
-│   │   ├── calibration.py
-│   │   ├── dog.jpg
-│   │   ├── inference_demo.py
-│   │   ├── input.txt
-│   │   ├── labelmap_coco.prototxt
-│   │   ├── labelmap_voc.prototxt
-│   │   ├── README.md
-│   │   ├── ssd300
-│   │   ├── ssd512
-│   │   ├── utils.py
-│   │   └── yolov3
-│   └── super_resolution
-│       └── espcn
-└── tuning_tool
-    ├── auto_tuning_tool
-    │   ├── evaluation_utils.py
-    │   ├── main.py
-    │   ├── main.sh
-    │   ├── test.py
-    │   ├── test.sh
-    │   ├── test_utils.py
-    │   ├── tune.py
-    │   ├── tune.sh
-    │   └── tune_utils.py
-    └── Auto Tuning Tool Guide.pdf
-```
-
 ## Guide 
-
 
 ### caffe
 
@@ -122,4 +39,78 @@ You can fine tune your int8 model if the accuracy is not satisfied. There is  us
 ### samples
 
 We provide a lot of frequently used network calibration and offline test samples here. 
+
+## Step by Step  
+
+#### 1. Environment　setup
+
+We **strongly recommend** that you have one Nvidia GPU PC and setup GPU docker environment, which will fully speed up development process. 
+
+* ##### Host PC 
+ubuntu 18.04 or 16.04
+
+python2.7
+
+docker installed
+
+nvidia-docker installed(if you want to setup GPU docker)
+
+* ##### Setup GPU docker envirement（**Recommended**)
+
+Currently we only provide pre-built libraries based on **CUDA 9.0**.Please make sure your host PC GPU driver is compatible with it .
+
+First please overwrite the prebuilt shared library files in the caffe_gpu folder
+to caffe folder.
+
+Then run docker build and run as below.
+
+nvidia-docker build -t bmcalibration:2.0_gpu -f docker/Dockerfile_GPU .
+
+nvidia-docker run -v /workspace:/workspace -it bmcalibration:2.0_gpu
+
+After that you have already completed GPU docker env. You must call below  apis  to enable GPU  Caffe.
+
+```
+caffe.set_mode_gpu()
+caffe.set_device(device_id)    # device_id is  the GPU id on your machine.
+```
+
+* ##### Setup CPU docker envirement
+
+Run docker build and run as below.
+
+docker build -t bmcalibration:2.0_cpu -f docker/Dockerfile_CPU .
+
+docker run -v /workspace:/workspace -it bmcalibration:2.0_cpu
+
+After that you have already completed GPU docker env.
+
+#### 2. Do quantization with calibration tool
+
+With your FP32 caffe  model (model &weight), you can use calibration tool to do FP32 quantization to get INT8 model which can be deployed in our SOC chip.  
+
+Please refer to this [`guide`](https://github.com/BM1880-BIRD/Edge-Development-Toolchain/blob/master/calibration_tool/Calibration-Tool-Guide.pdf) to use calibration tool.
+
+#### 3. Do offline accuracy test
+
+You can use our customized caffe which support INT8 model to do accuracy offline test.
+Currently we provide some inference [`samples`](https://github.com/BM1880-BIRD/Edge-Development-Toolchain/tree/master/samples/) 
+ for your reference(including classification/detection/super_resolution).
+ 
+ #### 4. Do model tuning
+ 
+ If you　get unacceptable INT8 accuracy after Step 3, you should demply model tuning to finetune INT8 model. 
+ 
+ Please refer to this [`guide`](https://github.com/BM1880-BIRD/Edge-Development-Toolchain/blob/master/tuning_tool/Auto-Tuning-Tool-Guide.pdf) to use tuning tool.
+ 
+  #### 5. Deploy your model on platform 
+  
+After all above steps,  you can convert INT8 model to bmodel file and then deploy on real platform for online test. 
+
+Please use bmbuilder tool  to convert INT8 model to bmodel. Please refer to this guide. 
+ 
+ 
+
+
+
 
