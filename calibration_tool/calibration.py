@@ -15,6 +15,7 @@ sys.path.append('./lib')
 #add caffe package 
 sys.path.append('..')
 
+
 import caffe
 from Calibration import Calibration
 import argparse
@@ -33,7 +34,9 @@ def run_calibration(args):
         "enable_memory_opt": args.memory_opt,
         "enable_calibration_opt": 1,
         "histogram_bin_num": 2048,
-        "math_lib_path": './lib/calibration_math.so'
+        "math_lib_path": './lib/calibration_math.so',
+        "enable_concat_quantize": 0
+
     }
     print(calibration_info)
 
