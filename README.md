@@ -79,8 +79,8 @@ caffe.set_device(device_id)    # device_id is  the GPU id on your machine.
 
 Run docker build and run as below.
 
+cd Edge-Development-Toolchain
 sudo docker build -t bmcalibration:2.0_cpu -f docker/Dockerfile_CPU .
-
 sudo docker run -v /workspace:/workspace -it bmcalibration:2.0_cpu
 
 After that you have already completed CPU docker env.
