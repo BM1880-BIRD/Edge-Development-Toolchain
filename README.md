@@ -83,7 +83,7 @@ sudo docker build -t bmcalibration:2.0_cpu -f docker/Dockerfile_CPU .
 
 sudo docker run -v /workspace:/workspace -it bmcalibration:2.0_cpu
 
-After that you have already completed GPU docker env.
+After that you have already completed CPU docker env.
 
 #### 2. Do quantization with calibration tool
 

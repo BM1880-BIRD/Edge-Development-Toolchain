@@ -1,8 +1,7 @@
 {
-    "size": [256, 256],
-    "r_mean": 0,
-    "g_mean": 0,
-    "b_mean": 0,
+    "size": [224, 224],
+    "r_mean": 126.68,
+    "g_mean": 116.779,
+    "b_mean": 103.939,
     "scale": 1,
-    "padding": true
 }
