@@ -17,6 +17,7 @@ def prepare_param(args):
     params['size_h'] = 512
     params['size_w'] = 512
     params['int8_flag'] = False
+    params['output_prefix'] = './{}/'.format(args.model_name)
 
     if args.model_name == 'yolov3':
         params['obj_threshold'] = 0.3
@@ -46,10 +47,10 @@ def inference_from_jpg(detector):
     if detections is not None:
         img = cv2.imread(params['img_path'])
         img = draw(img, detections[0], params['labelmap_file'])
-        # cv2.imwrite(os.path.join(params['output_prefix'], 'result.jpg'), img)
-        cv2.imshow('result: ', img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        cv2.imwrite(os.path.join(params['output_prefix'], 'result.jpg'), img)
+        #cv2.imshow('result: ', img)
+        #cv2.waitKey(0)
+        #cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
