@@ -1,6 +1,6 @@
 layer {
   name: 'data'
-  type: 'Python'
+  type: 'Input'
   top: 'data'
   input_param {
     shape: { dim: 1 dim: 3 dim: 224 dim: 224 }
