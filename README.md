@@ -99,7 +99,7 @@ Currently we provide some inference [`samples`](https://github.com/BM1880-BIRD/E
  
  #### 4. Do model tuning
  
- If you　get unacceptable INT8 accuracy after Step 3, you should demply model tuning to finetune INT8 model. 
+ If you　get unacceptable INT8 accuracy after Step 3, you should do model tuning to finetune INT8 model accuracy. 
  
  Please refer to this [`guide`](https://github.com/BM1880-BIRD/Edge-Development-Toolchain/blob/master/tuning_tool/Auto-Tuning-Tool-Guide.pdf) to use tuning tool.
  
