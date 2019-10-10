@@ -33,7 +33,7 @@ def run_calibration(args):
         "iteration": 1,
         "enable_memory_opt": args.memory_opt,
         "enable_calibration_opt": 1,
-        "histogram_bin_num": 2048,
+        "histogram_bin_num": 204800,
         "math_lib_path": './lib/calibration_math.so',
         "enable_concat_quantize": 0
 
