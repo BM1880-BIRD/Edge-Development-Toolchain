@@ -30,7 +30,7 @@ def run_calibration(args):
         "model_name": args.model_name,
         "in_prototxt": os.path.join(args.model_path,'deploy.prototxt'),
         "in_caffemodel": os.path.join(args.model_path,'custom.caffemodel'),
-        "iteration": 1,
+        "iteration": 100,
         "enable_memory_opt": args.memory_opt,
         "enable_calibration_opt": 1,
         "histogram_bin_num": 204800,
