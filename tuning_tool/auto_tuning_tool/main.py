@@ -104,7 +104,8 @@ if __name__ == '__main__':
     for layer in param.layer:
         if 'data' == layer.name:
             continue
-        if 'BatchNorm' == layer.type:
+        #if 'BatchNorm' == layer.type:
+        if layer.type in ['BatchNorm','Data','Input','Python','Softmax','PriorBox','Reshape', 'Flatten', 'Reshape', 'DetectionOutput']:
             continue
         if layer.name in args.ignore_layer_list:
             continue

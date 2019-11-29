@@ -122,10 +122,11 @@ class Tester(object):
     def eval_one(self, target_layer):
         layer_str = ''
         for layer in self.param.layer:
-            layer_str+=str(layer.name)
-            if (str(layer.name) == target_layer):
-                break
-            layer_str+=","
+            if layer.type not in ['Python','Softmax','Flatten', 'Reshape']:
+                layer_str+=str(layer.name)
+                if (str(layer.name) == target_layer):
+                    break
+                layer_str+=","
 
         layer_dist = self.net8_inference(layer_str, self.out32)
 
